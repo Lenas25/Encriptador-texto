@@ -39,7 +39,6 @@ const limpiar = () => {
 const mostrarResultado = (texto) => {
   initialResultado.classList.add("desactivado");
   resultado.classList.remove("desactivado");
-  btnPegar.classList.remove("desactivado");
   textoResultado.innerHTML = texto;
   textoEncriptar.value = "";
 }
@@ -76,6 +75,7 @@ const copiar = () => {
   const copiadoExitoso = document.getElementById("exitoso");
   navigator.clipboard.writeText(textoResultado.innerHTML);
   copiadoExitoso.innerHTML = "Texto copiado al portapapeles!";
+  btnPegar.classList.remove("desactivado");
 }
 
 const pegar = () => {
