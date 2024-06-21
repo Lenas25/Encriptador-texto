@@ -5,6 +5,14 @@ const resultado = document.getElementById("resultado");
 const textoResultado = document.getElementById("texto-encriptado");
 const copiadoExitoso = document.getElementById("exitoso");
 
+const llavesEncriptacion = [
+  ["a", "ai"],
+  ["e","enter"],
+  ["i","imes"],
+  ["o", "ober"],
+  ["u", "ufat"]
+]
+
 const evaluarTexto = (texto, type = "") => {
   limpiar();
   const regex = /([A-Z]|[à-ü]|[À-Ü])/;
@@ -36,9 +44,12 @@ const mostrarResultado = (texto) => {
 const encriptar = () => {
   const texto = textoEncriptar.value;
   if (evaluarTexto(texto, "encriptar")) return;
-
-  // encriptar con api de window de base64
-  const textoEncriptado = window.btoa(texto);
+  let textoEncriptado = texto.split('').map(letra => {
+    // Buscar la llave que coincida con la letra
+    let llave = llavesEncriptacion.find(llave => letra === llave[0]);
+    // Si la llave no existe, retornar la letra original
+    return llave ? llave[1] : letra;
+  }).join('');
   mostrarResultado(textoEncriptado);
 };
 
@@ -46,8 +57,14 @@ const desencriptar = () => {
   const texto = textoEncriptar.value;
   if (evaluarTexto(texto)) return;
 
-  // desencriptar con api de window de base64
-  const textoDesencriptado = window.atob(texto);
+  // Iterar sobre las llaves de encriptación
+  let textoDesencriptado = texto;
+  for (let llave of llavesEncriptacion) {
+    let [letra, encriptado] = llave;
+    let regex = new RegExp(encriptado, 'g'); //regex para encontrar todas las ocurrencias de la llave
+    textoDesencriptado = textoDesencriptado.replace(regex, letra); // Reemplazar todas las ocurrencias de la llave por la letra
+  }
+  
   mostrarResultado(textoDesencriptado);
 };
 
