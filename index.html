@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="shortcut icon"
+      href="./assets/personal_logo.png"
+      type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Encriptador de Texto | LenaDevs</title>
+  </head>
+  <body>
+    <header>
+      <img src="/assets/logo.svg" alt="Logo de Alura Latam" />
+    </header>
+    <main>
+      <div class="bloque-encriptar">
+        <div class="bloque-texto">
+          <textarea
+            name="texto"
+            id="texto"
+            placeholder="Ingrese el texto aqui..."></textarea>
+        </div>
+        <div class="bloque-botones">
+          <p id="error-encriptar" class="error"></p>
+          <div class="important">
+            <img src="/assets/icon_info.svg" alt="" />
+            <span>Solo letras minusculas y sin acentos</span>
+          </div>
+          <div class="btns">
+            <button class="btn-encriptar" onclick="encriptar();">
+              Encriptar
+            </button>
+            <button class="btn-desencriptar" onclick="desencriptar();">
+              Desencriptar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="bloque-resultado">
+        <div id="initial" class="initial-resultado">
+          <div class="img-principal">
+            <img
+              src="./assets/imagen_principal.svg"
+              alt="Un muñeco de imagen principal" />
+          </div>
+          <h3>Ningún mensaje fue encontrado</h3>
+          <p>Ingresa el texto que desees encriptar o desencriptar.</p>
+        </div>
+        <div id="resultado" class="resultado desactivado">
+          <div>
+            <div id="texto-encriptado"></div>
+          </div>
+          <div>
+            <p id="exitoso" class="exito"></p>
+            <button onclick="copiar();" class="btn-copiar">Copiar</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="./index.js"></script>
+  </body>
+</html>
