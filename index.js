@@ -4,6 +4,7 @@ const initialResultado = document.getElementById("initial");
 const resultado = document.getElementById("resultado");
 const textoResultado = document.getElementById("texto-encriptado");
 const copiadoExitoso = document.getElementById("exitoso");
+const btnPegar = document.getElementById("btn-pegar");
 
 const llavesEncriptacion = [
   ["a", "ai"],
@@ -32,11 +33,13 @@ const limpiar = () => {
   copiadoExitoso.innerHTML = "";
   initialResultado.classList.remove("desactivado");
   resultado.classList.add("desactivado");
+  btnPegar.classList.add("desactivado");
 }
 
 const mostrarResultado = (texto) => {
   initialResultado.classList.add("desactivado");
   resultado.classList.remove("desactivado");
+  btnPegar.classList.remove("desactivado");
   textoResultado.innerHTML = texto;
   textoEncriptar.value = "";
 }
@@ -44,8 +47,9 @@ const mostrarResultado = (texto) => {
 const encriptar = () => {
   const texto = textoEncriptar.value;
   if (evaluarTexto(texto, "encriptar")) return;
+  // Separa el texto en un array de letras y mapea cada letra
   let textoEncriptado = texto.split('').map(letra => {
-    // Buscar la llave que coincida con la letra
+    // Buscar la llave que coincida con cada letra mapeada
     let llave = llavesEncriptacion.find(llave => letra === llave[0]);
     // Si la llave no existe, retornar la letra original
     return llave ? llave[1] : letra;
@@ -72,4 +76,10 @@ const copiar = () => {
   const copiadoExitoso = document.getElementById("exitoso");
   navigator.clipboard.writeText(textoResultado.innerHTML);
   copiadoExitoso.innerHTML = "Texto copiado al portapapeles!";
+}
+
+const pegar = () => {
+  navigator.clipboard.readText().then(text => {
+    textoEncriptar.value = text;
+  });
 }

@@ -38,16 +38,28 @@ main{
   gap: 20px;
 }
 
-.bloque-texto > textarea, textarea::placeholder{
+.bloque-texto > textarea{
   color : var(--text-primary);
   font-size: 1.5rem;
-  border: none;
+  border: 1px solid transparent;
   outline: none;
   background: transparent;
   min-height: 300px;
   overflow-y: auto;
   width: 100%;
   resize: none;
+  border-radius: 30px;
+  padding:20px;
+  transition: all 0.3s ease-in-out;
+}
+
+textarea::placeholder{
+  color : var(--text-primary);
+}
+
+textarea:focus, textarea:hover{
+  border: 1px solid var(--text-primary);
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
 .error{
@@ -57,13 +69,19 @@ main{
   margin-top: 10px;
 }
 
-.bloque-botones > .important{
+.important{
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.important > div{
   display: flex;
   align-items: center;
   gap:10px;
   color: var(--gray);
   font-size: 12px;
-  margin: 20px 0;
   font-weight: 400;
 }
 
@@ -73,7 +91,7 @@ main{
   gap: 10px;
 }
 
-.btns > button, .btn-copiar{
+button{
   padding: 20px 10px;
   outline: none;
   cursor: pointer;
@@ -83,16 +101,32 @@ main{
   border: 1px solid var(--text-primary);
 }
 
-.btn-encriptar{
+.btn-encriptar, .btn-pegar{
   background-color: var(--text-primary);
   color:white;
   width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-pegar{
+  width: 100%;
+  max-width: 200px;
+  padding:0.5rem;
+}
+
+.btn-encriptar:hover, .btn-pegar:hover{
+  background-color: #0a3871d6;
 }
 
 .btn-desencriptar, .btn-copiar{
   background-color: white;
   color:var(--text-primary);
   width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-copiar:hover,.btn-desencriptar:hover {
+  background-color: #f3f5fc;
 }
 
 .bloque-resultado{
@@ -116,6 +150,10 @@ main{
 }
 
 .initial-resultado.desactivado{
+  display: none;
+}
+
+.btn-pegar.desactivado{
   display: none;
 }
 
